@@ -1,0 +1,81 @@
+{% extends "dashboardheader.html" %}
+{% load static %}
+{% block start %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Our Customers</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">customers</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alert Display Block -->
+						  {% if messages %}
+						  <div id="alert-container">
+							  {% for message in messages %}
+								  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									  {{ message }}
+									  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								  </div>
+							  {% endfor %}
+						  </div>
+					  {% endif %}
+					  <!-- End Alert Display Block -->
+            <!-- Export Datatable start -->
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    <h4 class="text-blue h4">Our Customers</h4>
+                </div>
+                <div class="pb-20">
+                    <table class="table hover multiple-select-row data-table-export nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort">Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>type</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for items in user %}
+                            <tr>
+                                <td class="table-plus">{{items.fullname}}</td>
+                                <td>{{items.email}}</td>
+                                <td>{{items.address}}</td>
+                                <td>{{items.type}}</td>
+                                <td>{{items.status}}</td>
+                                <td>
+                                    {% if items.status == "Active" %}
+                                    <a href="/UpdateRecords/{{ items.id }}" class="btn btn-danger">Block</a>
+                                    {% else %}
+                                    <a href="/UpdateRecords/{{ items.id }}" class="btn btn-success">Active Now</a>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="/deleteUser/{{ items.id }}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Export Datatable End -->
+        </div>
+    </div>
+</div>
+{% endblock %}

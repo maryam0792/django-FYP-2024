@@ -1,0 +1,98 @@
+{% extends 'master.html' %}
+{% load static %} 
+{% block start %}
+<!-- ***** Main Banner Area Start ***** -->
+
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        <div class="hero__items">
+            <video class="hero__video" autoplay muted loop>
+                <source src="{% static 'videos/hero/hero_5.mp4' %}" type="video/mp4">
+            </video>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h6>New Arrivals</h6>
+                            <h2>Exclusive Sunglasses Collection 2030</h2>
+                            <p>Discover the latest trends in sunglasses with our exclusive collection, offering unparalleled style and protection for your eyes.</p>
+                            <a href="/shop/" class="primary-btn">Explore Collection <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+ <!-- Banner Section Begin -->
+ <section class="banner spad">
+    <div class="container">
+        <div class="row">
+            {% for items in categories %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="banner__item">
+                        <div class="banner__item__pic" style="position: relative;">
+                            <img src="{% get_media_prefix %}{{ items.image }}" alt="" style="width: 100%;">
+                            <a href="/category_products/{{ items.id }}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                <button class="btn btn-custom">{{ items.title }}</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+ <!-- Product Section Begin -->
+ <section class="product spad mt-5" >
+    <div class="container">
+        <h2 style="text-align: center; font-weight: bold;">Check our products</h2>
+        <div class="row mt-4">
+            <div class="col-lg-12 ">
+                <ul class="filter__controls">
+                    <li data-filter=".new-arrivals">New Arrivals</li>
+                    <li data-filter=".hot-sales">Hot Sales</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row product__filter">
+         {% for items in Products %}
+         <div class="col-lg-3 col-md-6 col-sm-6  mix new-arrivals">
+            <div class="product__item  image-container">
+                <div class="product__item__pic set-bg" data-setbg="{% get_media_prefix %}{{items.image}}" style="	height: 280px;
+                position: relative;
+                background-position: center center;
+                background-size: cover; 
+                background-repeat: no-repeat;">
+                    <span class="label">NEW {{ items.category.title }}</span>
+                    <div class="overlay-card">
+                        <img src="{% get_media_prefix %}{{items.image}}" alt="{{ product.title }}" class="img-fluid overlay-image">
+                    </div>
+                </div>
+                <div class="product__item__text">
+                    <h6>{{items.title}}</h6>
+                    <a href="/singleproducts/{{items.id}}" class="add-cart">VIEW ITEM Detail</a>
+                    <div class="rating">
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <h5>{{items.price}}</h5>
+                </div>
+            </div>
+         </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
+
+
+
+{% endblock %}

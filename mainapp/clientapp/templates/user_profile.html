@@ -1,0 +1,59 @@
+{% extends 'master.html' %} {% load static %} {% block start %}
+ 
+<!-- Profile Container -->
+<div class="profile-container">
+    
+    <div class="profile-header">
+          <!-- Display the user's profile image dynamically -->
+          {% if user.image %}
+          <img src="{% get_media_prefix %}{{ user.image}}" alt="Profile Image" class="profile-icon" id="image">
+      {% else %}
+          <img src="{% static 'img/icon/profile1.png' %}" alt="Profile Icon" class="profile-icon">
+      {% endif %}
+
+        <h1>Welcome, {{ user.fullname }}</h1>
+        <p>Manage your account information and settings.</p>
+    </div>
+
+    <!-- Profile Details Section -->
+    <div class="profile-details">
+        <div class="profile-card">
+            <h2>Profile Information</h2>
+            <p><strong>Username:</strong> {{ user.fullname }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Address:</strong>{{ user.address }}</p>
+            <!-- <p><strong>password:</strong> {{ user.password }}</p> -->
+            <!-- Add more sections as needed -->
+
+            <h2>Account Balance</h2>
+            <!-- <p><strong>scores:</strong>{{ score.score }}</p> -->
+            <p><strong>Coins:</strong>
+                <img src="{% static 'img/coins.jpg' %}" alt="Coins Image" class="coins-icon"> 
+                {{ coins }}</p>
+            <p><strong>Rupees:</strong> {{ rupees }}-RS</p>
+
+
+        <h2>your scores</h2>
+        <!-- <ul>
+            {% for score in scores %}
+                <li>Score: {{ score.new_score }} </li>
+            {% empty %}
+                <li>No scores available.</li>
+            {% endfor %}
+        </ul> -->
+        {% if latest_score %}
+        <p>Score: {{ latest_score.score }} (Date: {{ latest_score.date_recorded }})</p>
+    {% else %}
+        <p>No scores available.</p>
+    {% endif %}
+        </div>
+        <!-- Add more sections as needed -->
+
+         <!-- Conditionally show the "Edit Profile" button -->
+         {% if request.session.id %}
+         <a href="{% url 'edit_profile' %}" class="edit-button">Edit Profile</a>
+        {% endif %}
+    </div>
+</div>
+    
+{% endblock %}

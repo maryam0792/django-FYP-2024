@@ -1,0 +1,81 @@
+/* Container for Header Navigation Option */
+/* .header__nav__option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+} */
+
+/* Form Group: Search Bar Container */
+.form-group {
+    position: relative;
+    margin: 0;
+    width: 100%;
+}
+
+/* Search Input Field */
+.search-input {
+    width: 100%;
+    padding: 10px 40px 10px 15px; /* Padding for icon space */
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Search Button with Icon */
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Search Icon */
+.search-button i {
+    font-size: 20px;
+    color: #333; /* Icon color */
+}
+
+/* Hover effect for Input and Icon */
+.search-input:focus {
+    border-color: #333; /* Change border color on focus */
+}
+
+.search-button:hover i {
+    color: #555; /* Change icon color on hover */
+}
+
+/* Shopping Cart Icon */
+.header__nav__option a {
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+}
+
+.header__nav__option a img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Shopping Cart Item Count */
+.header__nav__option a span {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+
+

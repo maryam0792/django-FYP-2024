@@ -1,0 +1,356 @@
+<!-- base.html -->
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Male_Fashion Template" />
+    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Glamour glasses view</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css Styles -->
+    <link
+      rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/font-awesome.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/elegant-icons.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/magnific-popup.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/nice-select.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/owl.carousel.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/slicknav.min.css' %}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/style.css' %}"
+      type="text/css"
+    />
+    <!-- alert -->
+    <style>
+    .alert {
+      display: none; /* Hidden by default */
+      padding: 10px;
+      color: white;
+      text-align: center;
+      margin-bottom: 15px;
+      border-radius: 4px;
+  }
+  
+  .success {
+      background-color: #4CAF50; /* Green */
+  }
+  
+  .error {
+      background-color: #f44336; /* Red */
+  }
+  
+  .alert.show {
+      display: block;
+  }
+  </style>
+  <!-- tryon  -->
+   <style>
+    .how-it-works {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+}
+
+.how-it-works .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.how-it-works h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.how-it-works .steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.how-it-works .step {
+    flex: 1 1 30%;
+    text-align: center;
+    margin: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.how-it-works .step h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.how-it-works .step p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.how-it-works .step img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+   </style>
+    <!-- <link rel="stylesheet" href="{% static 'tryon_app/css/styles.css' %}" /> -->
+
+    
+  </head>
+  <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+      <div class="header__top">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-md-7">
+                      <div class="header__top__left">
+                          <p>
+                              <i class="fa fa-phone"></i> 042-111-00-00-78 | 
+                              <i class="fa fa-envelope"></i> info@superiorcolleges.edu.pk
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-2 col-md-3">
+                  <div class="header__logo">
+                      <a href="/"><img src="{% static 'img/logo2.png' %}" alt=""></a>
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <nav class="header__menu mobile-menu">
+                      <ul>
+                          <li class="{% if request.path == '/' %}active{% endif %}"><a href="/">Home</a></li>
+                          <li class="{% if request.path == '/shop/' %}active{% endif %}"><a href="/shop/">Shop</a></li>
+                           <!-- game  section start-->
+                           <li><a href="/game/">play game </a></li>
+                           <!-- game section end -->
+                          <li class="{% if request.path == '/about/' or request.path == '/shoppingcart/' or request.path == '/contact/' %}active{% endif %}"><a href="#">Pages</a>
+                              <ul class="dropdown">
+                                  <li><a href="/about/">About Us</a></li>
+                                  <li><a href="/shoppingcart/">Shopping Cart</a></li>
+                                  <li><a href="/contact/">Contact</a></li>
+                              </ul>
+                          </li>
+                          {% if request.session.id %}
+                          <li><a href="/logout">Logout</a></li>
+                          {% else %}
+                          <li><a href="/login">Login</a></li>
+                          <li><a href="/signup">Signup</a></li>
+                          {% endif %}
+                      </ul>
+                  </nav>
+              </div>
+              <div class="col-lg-4 col-md-3">
+                  <div class="header__nav__option desktop-only">
+                      <!-- Desktop search bar and cart icon -->
+                      <form method="GET" action="{% url 'search_items' %}" enctype="multipart/form-data">
+                          <div class="form-group mb-0">
+                              <input type="text" class="form-control search-input" name="query" placeholder="Search Here" value="{{ query }}">
+                              
+                          </div>
+                      </form> 
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+    <!-- Header Section End -->
+     
+    <main>{% block content %} {% endblock %}</main>
+
+    <!-- information section start -->
+    <section class="how-it-works">
+      <div class="container ">
+          <h2 style="text-align: center; font-weight: bold;">How It Works</h2>
+          <div class="steps col-lg-12 col-md-6 col-sm-12 ">
+              <div class="step">
+                  <h3>1. Upload Your Photo</h3>
+                  <p>Choose a clear photo of your face to get started.</p>
+                  <img src="{% static 'img/tryon/1t.jpg' %}" alt="Before Try-On" style="width: 100%; max-width: 300px;">
+              </div>
+              <div class="step">
+                  <h3>2. Virtual Try-On</h3>
+                  <p>Use our virtual try-on tool to see how different sunglasses look on you.</p>
+                  <img src="{% static 'img/tryon/2t.png' %}" alt="Virtual Try-On" style="width: 100%; max-width: 300px;">
+              </div>
+              <div class="step">
+                  <h3>3. View Results</h3>
+                  <p>Compare your look with different styles and find the perfect pair.</p>
+                  <img src="{% static 'img/tryon/3t.png' %}" alt="After Try-On" style="width: 100%; max-width: 300px;">
+              </div>
+          </div>
+      </div>
+    </section>
+      <!-- information section end -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="footer__about">
+                      <div class="footer__logo">
+                          <a href="#"><img src="{% static 'img/footer-logo1.png' %}" alt=""></a>
+                      </div>
+                      <p>The customer is at the heart of our unique business model, which includes design.</p>
+                      <!-- <a href="#"><img src="img/payment.png" alt=""></a> -->
+                  </div>
+              </div>
+              <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                  <div class="footer__widget">
+                      <h6>Shopping</h6>
+                      <ul>
+                          <li><a href="/shop/">Glasses store</a></li>
+                        
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-6">
+                  <div class="footer__widget">
+                      <h6>Shopping</h6>
+                      <ul>
+                          <li><a href="/contact/">Contact Us</a></li>
+                          
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                  <div class="footer__widget">
+                      <h6>NewLetter</h6>
+                      <div class="footer__newslatter">
+                          <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                          <form action="#">
+                              <input type="text" placeholder="Your email">
+                              <button type="submit"><span class="icon_mail_alt"></span></button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                  <div class="footer__copyright__text">
+                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                      <p>Copyright ©
+                          <script>
+                              document.write(new Date().getFullYear());
+                          </script>2020
+                          All rights reserved 
+                      </p>
+                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+    <!-- Footer Section End -->
+
+    <!-- try on  alert-->
+    <script>document.addEventListener('DOMContentLoaded', function() {
+      function showMessage(type) {
+          var successMessage = document.getElementById('success-message');
+          var errorMessage = document.getElementById('error-message');
+    
+          if (type === 'success') {
+              successMessage.classList.add('show');
+              errorMessage.classList.remove('show');
+          } else if (type === 'error') {
+              successMessage.classList.remove('show');
+              errorMessage.classList.add('show');
+          }
+    
+          setTimeout(function() {
+              successMessage.classList.remove('show');
+              errorMessage.classList.remove('show');
+          }, 3000); // Display for 3 seconds
+      }
+    
+      // Check if image has been uploaded and processed
+      var uploadedImage = document.getElementById('uploaded-image');
+      if (uploadedImage && uploadedImage.src) {
+          // Here, you need to check if the glasses were successfully applied or not.
+          // This could be based on your application's logic or server response.
+    
+          // For demonstration, assume the glassesApplied variable is set based on your logic.
+          var glassesApplied = true; // This should be set based on your actual condition
+          var faceDetected = true;   // This should be set based on your actual condition
+    
+          if (glassesApplied && faceDetected) {
+              showMessage('success');
+          } else if (!faceDetected) {
+              showMessage('error');
+          }
+      }
+    });
+    </script>
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Include face-api.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.min.js"></script>
+    <!-- Include your custom script after face-api.js -->
+    <!-- <script defer src="{% static 'tryon_app/js/face-api.js' %}"></script> -->
+
+    <script src="{% static 'tryonapp/js/tryon.js' %}"></script>
+  </body>
+</html>

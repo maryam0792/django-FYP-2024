@@ -1,0 +1,40 @@
+.image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-top {
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: auto;
+}
+
+.overlay-card {
+    position: absolute;
+    top: 0;
+    right: -100%; /* Initially hide the overlay card outside the right edge */
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(117, 117, 117, 0.747); /* Optional: semi-transparent background */
+    transition: right 0.4s ease; /* Transition to slide in */
+    color: white;
+    padding: 2px;
+    text-align: center;
+}
+
+.overlay-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.image-container:hover .overlay-card {
+    right: 0; /* Slide in from the right */
+}
+
+.image-container:hover .card-img-top {
+    transform: scale(1.1);
+}

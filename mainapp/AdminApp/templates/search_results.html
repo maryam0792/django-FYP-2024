@@ -1,0 +1,118 @@
+{% extends "dashboardheader.html" %}
+{% load static %}
+{% block start %}
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 ">
+                        <div class="title">
+                            <h4>Search results</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Products</li>
+                            </ol>
+                        </nav>
+                        <div class="col-md-6 col-sm-12 text-right">
+                            <p>Total Products Found: {{ products.count }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- search product results start -->
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    {% if products %}
+        <div class="product-wrap">
+            <div class="product-list">
+                <ul class="row">
+                    {% for product in products %}
+                    <li class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="product-box">
+                            <div class="product-img">
+                                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                            </div>
+                            <div class="product-caption">
+                                <h4 class="text-center">
+                                    <a href="#">{{ product.title }}</a>
+                                </h4>
+                                <div class="price">
+                                    <ins>{{ product.price }} RS</ins>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-text-center">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Update{{forloop.counter}}">
+                                            Update
+                                        </button>
+
+                                        <!-- The Modal -->
+                                        <div class="modal" id="Update{{forloop.counter}}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Product Details</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+
+                                                    <!-- Modal Body -->
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <img src="{{ product.image.url }}" alt="{{ product.title }}" class="img-fluid mx-auto d-block">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <img src="{{ product.tryon.url }}" alt="Try on Image" class="img-fluid mx-auto d-block">
+                                                            </div>
+                                                        </div>
+                                                        <form action="{% url 'update_products' %}" method="POST" enctype="multipart/form-data">
+                                                            {% csrf_token %}
+                                                            <label for="">Title</label>
+                                                            <input type="text" name="title" class="form-control" value="{{product.title}}">
+                                                            <label for="">Price</label>
+                                                            <input type="text" name="price" class="form-control" value="{{product.price}}">
+                                                            <label for="">New Picture</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                            <label for="">New Try on Image</label>
+                                                            <input type="file" name="tryonfile" class="form-control">
+                                                            <label for="">Description</label>
+                                                            <textarea name="description" rows="5" class="form-control">{{product.description}}</textarea>
+                                                            <input type="hidden" name="id" value="{{product.id}}">
+                                                            <input type="submit" name="Save" value="Save Changes" class="btn btn-primary mt-3">  
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-text-center">
+                                        <a href="/deleteProduct/{{product.id}}" class="btn btn-outline-danger">Delete</a>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </li> 
+                    {% endfor %}    
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+                </div>
+
+            </div>
+            <!-- search product results end-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

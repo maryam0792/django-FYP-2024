@@ -1,0 +1,17 @@
+/* On index.html categories button customization  */
+.btn-custom {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    background-color: white;
+    font-weight: bold;
+    color: black;
+}

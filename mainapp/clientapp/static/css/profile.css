@@ -1,0 +1,37 @@
+/* profile.css */
+
+/* Profile icon styles */
+.desktop-profile-icon,
+.mobile-profile-icon {
+    width: 100px; /* Adjust the size as needed */
+    height: 100px; /* Adjust the size as needed */
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+/* Hide mobile-specific elements on desktop */
+.mobile-profile-link {
+    display: none;
+}
+
+/* Show profile link and icon on desktop */
+.desktop-profile-link {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* Media query to handle mobile view */
+@media (max-width: 767px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-profile-link {
+        display: flex;
+        align-items: center;
+    }
+
+  
+}
+

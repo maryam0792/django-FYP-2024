@@ -1,0 +1,149 @@
+{% extends 'dashboardheader.html' %}
+{% load static %}
+{% block start %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Product</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Product</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <!-- Button to Open the Modal -->
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                       Add New products 
+                      </button>
+  
+                         <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                           <div class="modal-dialog">
+                              <div class="modal-content">
+  
+                        <!-- Modal Header -->
+                            <div class="modal-header">
+                                   <h4 class="modal-title">product Details</h4>
+                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+  
+                        <!-- Modal body -->
+                            <div class="modal-body">
+                                <form action="{% url 'add_products' %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <label for="">Title</label>
+                                    <input type="text" name="title" class="form-control">
+                                    <label for="">Price</label>
+                                    <input type="text" name="price" class="form-control">
+                                    <input type="hidden" name="catId" class="form-control" value="{{ catId }}">
+                                    <label for="">Picture</label>
+                                    <input type="file" name="file" class="form-control">
+                                    <label for="">Try on Image</label>
+                                    <input type="file" name="tryonfile" class="form-control">
+                                    <label for="">Description</label>
+                                    <textarea name="description" id="" rows="5" class="form-control"></textarea>
+                                    <input type="submit" name="Save" value="Save_Change" class="btn btn-primary mt-3">
+                                    
+                                </form>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <!-- Alert Display Block -->
+						  {% if messages %}
+						  <div id="alert-container">
+							  {% for message in messages %}
+								  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									  {{ message }}
+									  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								  </div>
+							  {% endfor %}
+						  </div>
+					  {% endif %}
+					  <!-- End Alert Display Block -->
+            <div class="product-wrap">
+                <div class="product-list">
+                    <ul class="row">
+                        {% for items in Products %}
+                        <li class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="product-box">
+                                <div class="product-img"><img src="{% get_media_prefix %}{{ items.image }}" alt=""></div>
+                                <div class="product-caption">
+                                    <h4 class="text-center"><a href="#">{{ items.title }}</a></h4>
+                                    <div class="price">
+                                        <ins>{{ items.price}}RS</ins>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-text-center">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Update{{forloop.counter}}">
+                                                Update
+                                               </button>
+                           
+                                                  <!-- The Modal -->
+                                                 <div class="modal" id="Update{{forloop.counter}}">
+                                                    <div class="modal-dialog">
+                                                       <div class="modal-content">
+                           
+                                                 <!-- Modal Header -->
+                                                     <div class="modal-header">
+                                                            <h4 class="modal-title">Product Details</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                     </div>
+                           
+                                                 <!-- Modal body -->
+                                                     <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <img src="{% get_media_prefix %}{{ items.image }}" alt="" 
+                                                                class="image-fluid mx-auto d-block">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <img src="{% get_media_prefix %}{{ items.tryon }}" alt="" z
+                                                                class="image-fluid mx-auto d-block">
+                                                            </div>
+                                                        </div>
+                                                        <form action="{% url 'update_products' %}" method="POST" enctype="multipart/form-data">
+                                                            {% csrf_token %}
+                                                            <label for="">Title</label>
+                                                            <input type="text" name="title" class="form-control" value="{{items.title}}">
+                                                            <label for="">Price</label>
+                                                            <input type="text" name="price" class="form-control" value="{{items.price}}">
+                                                            <label for="">New Picture</label>
+                                                            <input type="file" name="file" class="form-control">
+                                                            <label for="">New Try on Image</label>
+                                                            <input type="file" name="tryonfile" class="form-control">
+                                                            <label for="">Description</label>
+                                                            <textarea name="description" id="" rows="5" class="form-control">{{items.description}}</textarea>
+                                                            <input type="hidden" name="id" id="" value="{{items.id}}">
+                                                            <input type="submit" name="Save" value="Save_Change" class="btn btn-primary mt-3">  
+                                                        </form>
+                                                     </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                        </div>
+                                        <div class="col-lg-6 col-text-center" >
+                                            <a href="/deleteProduct/{{items.id}}" class="btn btn-outline-danger">Delete</a>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </li> 
+                        {% endfor %}    
+                    </ul>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

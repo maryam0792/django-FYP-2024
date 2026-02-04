@@ -1,0 +1,119 @@
+{% extends 'dashboardheader.html' %}
+{% load static %}
+{% block start %}
+<div class="main-container">
+
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Profile</h4>
+                        </div>
+                        <!-- Alert Display Block -->
+						  {% if messages %}
+						  <div id="alert-container">
+							  {% for message in messages %}
+								  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									  {{ message }}
+									  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								  </div>
+							  {% endfor %}
+						  </div>
+					  {% endif %}
+					  <!-- End Alert Display Block -->
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30 mx-auto">
+                    <div class="pd-20 card-box height-100-p">
+                        <div class="profile-photo">
+                            <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
+                            <img src="{% static 'vendors/images/profile.png' %}" id="image" alt="" class="mt-3">
+                            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                            <div class="modal-body pd-5">
+                                                <div class="img-container">
+													<img id="image" src="{% static 'vendors/images/profile.png' %}" alt="Picture">
+												</div>
+                                                    <div class="card-box height-100-p overflow-hidden">
+                                                        <div class="profile-tab height-100-p">
+                                                            <div class="tab height-100-p">
+                                                                <ul class="nav nav-tabs customtab" role="tablist">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Updated Information</a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="tab-content">
+                                                                    <!-- Timeline Tab start -->
+                                                                    <div class="tab-pane fade show active" id="timeline" role="tabpanel">
+                                                                        <div class="pd-20">
+                                                                            <div class="profile-timeline">
+                                                                                <div class="timeline-month">
+                                                                                    <h5>you can  update your 
+                                                                                        personal Information Here</h5>
+                                                                                </div>
+                                                                                <div class="profile-timeline-list">
+                                                                                   <form action="{% url 'update_profile' %}" method='POST' enctype="multipart/form-data">
+                                                                                    {% csrf_token %}
+                                                                                     <label for="">Full Name</label>
+                                                                                     <input type="text" Name="fullname" class="form-control" value="{{user.fullname}}">
+                                                                                     <label for="">Email</label>
+                                                                                     <input type="text" Name="email" class="form-control" value="{{user.email}}">
+                                                                                     <label for="">Password</label>
+                                                                                     <input type="text" Name="password" class="form-control" value="{{user.password}}" >
+                                                                                    <label for="">Address:</label>
+                                                                                    <input type="text" name="address" class="form-control" value="{{user.address}}">
+                                                                                     <input type="hidden" name="type" id="" value="Admin">
+                                                                                     <label for="">Choose New Picture</label>
+                                                                                     <input type="file" name="file" class="form-control" id="">
+                                                                                     <input type="submit" name="save" value="Save Changes" class="btn btn-primary mt-3">
+                                                                                   </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Timeline Tab End -->
+                                                                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <h5 class="text-center h5 mb-0">{{user.fullname}}</h5>
+                        <p class="text-center text-muted font-14">{{user.type}}</p>
+                        <div class="profile-info">
+                            <h5 class="mb-20 h5 text-blue">Contact Information</h5>
+                            <ul>
+                                <li>
+                                    <span>Email Address:</span>
+                                    {{user.email}}
+                                </li>
+                                <li>
+                                    <span>Address:</span>
+                                    {{user.address}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends "dashboardheader.html" %}
+{% load static %}
+{% block start %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Our Orders</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alert Display Block -->
+						  {% if messages %}
+						  <div id="alert-container">
+							  {% for message in messages %}
+								  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									  {{ message }}
+									  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								  </div>
+							  {% endfor %}
+						  </div>
+					  {% endif %}
+					  <!-- End Alert Display Block -->
+            <!-- Export Datatable start -->
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    <h4 class="text-blue h4">Our Orders</h4>
+                </div>
+                <div class="pb-20">
+                    <table class="table hover multiple-select-row data-table-export nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort">Customer</th>
+                                <th>Bill</th>
+                                <th>City</th>
+                                <th>Area/Code</th>
+                                <th>Status</th>
+                                <th>Products</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in orders %}
+                            <tr>
+                                <td class="table-plus">
+                                    <img src="{% get_media_prefix %}{{ item.customer.image }}"  
+                                         alt=""
+                                         class="avatar-photo"
+                                         width="50px">
+                                    <br>
+                                    {{ item.customer.fullname }}    
+                                </td>
+                                <td>{{ item.bill }}</td>
+                                <td>{{ item.city }}</td>
+                                <td>{{ item.area }}/{{ item.areacode }}</td>
+                                <td>{{ item.status }}</td>
+                               
+
+                                <td>
+                                    <!-- Button to Open the Modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Update{{ forloop.counter }}">
+                                       View
+                                    </button>
+                        
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="Update{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="UpdateLabel{{ forloop.counter }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                        
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="UpdateLabel{{ forloop.counter }}">Order products</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                
+                                                <!-- Modal Body -->
+                                                <div class="modal-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Product</th>
+                                                                <th>Quantity</th>
+                                                                <th>Price</th>
+                                                                <th>Sub Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for oitem in orderitems %}
+                                                              {% if oitem.order.id == item.id %}
+                                                              <tr>
+                                                                <td class="table-plus">
+                                                                    <img src="{% get_media_prefix %}{{ oitem.product.image }}"  
+                                                                    alt=""
+                                                                    class="avatar-photo"
+                                                                    width="50px">
+                                                                   <br>
+                                                                   {{ oitem.product.title }}   
+                                                                   </td>
+                                                                   <td>{{ oitem.quantity }}</td>
+                                                                   <td>{{ oitem.product.price }} Rs</td>
+                                                                   
+                                                                   <td>
+                                                                    {% widthratio oitem.product.price 1 oitem.quantity %} Rs
+                                                                   </td>
+                                                              </tr>
+                                                              {% endif %}  
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                        
+                                <!-- Status Change Button -->
+                                <td>
+                                    {% if item.status == "pending" %}
+                                        <a href="/change_order_status/{{ item.id }}" class="btn btn-primary">Dispatch</a>
+                                    {% elif item.status == "dispatched" %}
+                                        <a href="/change_order_status/{{ item.id }}" class="btn btn-primary">Completed</a>
+                                    {% else %}
+                                        Already {{ item.status }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+                    </table>
+                </div>
+            </div>
+            <!-- Export Datatable End -->
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends 'master.html' %} {% load static %} {% block start %}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Check Out</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a href="/shop/">Shop</a>
+                        <span>Check Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="checkout__form">
+            <form action="{% url 'proceedtocheckout' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <h6 class="coupon__code">
+                            <div class="coupon-container">
+                                <span class="icon_tag_alt"></span>
+                                <p class="available-coins-text">Available Coins 
+                                    <img src="{% static 'img/coins.jpg' %}" alt="Coins Image" class="coins-icon"> 
+                                    <span>{{ coins }}</span>
+                                </p>   
+                            </div>
+                        </h6>
+                        
+                        <h6 class="checkout__title">Billing Details</h6>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Full Name<span>*</span></p>
+                                    <input type="text" 
+                                    required pattern="[A-Za-z\s]{1,50}"
+                                    name="fullname">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input type="text" 
+                                    required pattern="^\d{11}$"
+                                    name="phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            <input 
+                                type="text" 
+                                name="address" 
+                                placeholder="Street Address" 
+                                class="checkout__input__add" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Town/City<span>*</span></p>
+                            <input type="text" 
+                            required pattern="[A-Za-z\s]{1,50}" name="city">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Area<span>*</span></p>
+                            <input type="text"
+                            required pattern="[A-Za-z\s]{1,50}" 
+                            name="area" id="area"
+                            list="area-options">
+                            <datalist id="area-options">
+                                <!-- Karachi Areas -->
+                                <option value="Clifton, Karachi"></option>
+                                <option value="DHA, Karachi"></option>
+                                <option value="Gulshan-e-Iqbal, Karachi"></option>
+                                <option value="Nazimabad, Karachi"></option>
+                                <option value="Korangi, Karachi"></option>
+                                <option value="PECHS, Karachi"></option>
+                                <option value="Saddar, Karachi"></option>
+                                
+                                <!-- Lahore Areas -->
+                                <option value="DHA, Lahore"></option>
+                                <option value="Gulberg, Lahore"></option>
+                                <option value="Model Town, Lahore"></option>
+                                <option value="Johar Town, Lahore"></option>
+                                <option value="Cantt, Lahore"></option>
+                                <option value="Shadman, Lahore"></option>
+                                <option value="Bahria Town, Lahore"></option>
+                                
+                                <!-- Islamabad Areas -->
+                                <option value="F-6, Islamabad"></option>
+                                <option value="F-7, Islamabad"></option>
+                                <option value="F-8, Islamabad"></option>
+                                <option value="G-10, Islamabad"></option>
+                                <option value="I-8, Islamabad"></option>
+                                <option value="E-11, Islamabad"></option>
+                                <option value="DHA, Islamabad"></option>
+                                
+                                <!-- Rawalpindi Areas -->
+                                <option value="Satellite Town, Rawalpindi"></option>
+                                <option value="Chaklala Scheme, Rawalpindi"></option>
+                                <option value="DHA, Rawalpindi"></option>
+                                <option value="Bahria Town, Rawalpindi"></option>
+                                <option value="Peshawar Road, Rawalpindi"></option>
+                                
+                                <!-- Peshawar Areas -->
+                                <option value="Hayatabad, Peshawar"></option>
+                                <option value="University Town, Peshawar"></option>
+                                <option value="DHA, Peshawar"></option>
+                                <option value="Saddar, Peshawar"></option>
+                                
+                                <!-- Quetta Areas -->
+                                <option value="Satellite Town, Quetta"></option>
+                                <option value="Jinnah Town, Quetta"></option>
+                                <option value="Cantt, Quetta"></option>
+                                <option value="Sariab Road, Quetta"></option>
+                                <option value="Hanna Urak, Quetta"></option>
+                                
+                                <!-- Multan Areas -->
+                                <option value="Cantt, Multan"></option>
+                                <option value="Gulgasht Colony, Multan"></option>
+                                <option value="Wapda Town, Multan"></option>
+                                <option value="Shah Rukn-e-Alam, Multan"></option>
+                                <option value="New Multan, Multan"></option>
+                                
+                                <!-- Faisalabad Areas -->
+                                <option value="D-Ground, Faisalabad"></option>
+                                <option value="Peoples Colony, Faisalabad"></option>
+                                <option value="Madina Town, Faisalabad"></option>
+                                <option value="Jinnah Colony, Faisalabad"></option>
+                                <option value="Gulistan Colony, Faisalabad"></option>
+                                
+                                <!-- Add more cities and areas as needed -->
+                        </div>
+                        <div class="checkout__input">
+                            <p>Postcode / ZIP<span>*</span></p>
+                            <input type="text" 
+                            required pattern="^\d{5}$" name="areacode">
+                        </div>
+                        <!-- Courier Service Fees -->
+                            <div class="checkout__info">
+                                <div class="checkout_info_item">
+                                    <p>Shipping Method:</p>
+                                    <span>Courier Services - Rs: 250</span>
+                                </div>
+                            </div>
+
+                            
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4 class="order__title">Your order</h4>
+                            <div class="checkout__order__products">Product <span>Total</span></div>
+                            <ul class="checkout__total__products">
+                                {% for item in items %}
+                                <li>
+                                    {{item.quantity}} x {{ item.product.title }} 
+                                    <span>RS- {{ item.product.price }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        
+
+                        <ul class="checkout__total__all">
+                               <li>Subtotal <span>RS- {{ total }}</span></li>
+                               <li>Courier Service Fees <span>Rs: 250</span></li>
+                               
+                                 <!-- Check if user has 500 or more coins -->
+                             {% if coins >= 200 %}
+                             <li>Available Coins 
+                                <img src="{% static 'img/coins.jpg' %}" alt="Coins Image" class="coins-icon"> 
+                                <span>{{ coins }}</span>
+                            </li>                    
+                               <li>Discount (from coins) <span>Rs: {{ rupees }}</span></li>
+                               <li>Adjusted Total <span>Rs: {{ adjusted_total|add:250 }}</span></li>
+                            {% else %}
+                                 <li>Available Coins 
+                                    <img src="{% static 'img/coins.jpg' %}" alt="Coins Image" class="coins-icon"> 
+                                    <span>{{ coins }}</span></li>
+                                 <li>No discount applicable</li>
+                                <li>Total <span>Rs: {{ total|add:250 }}</span></li>
+                            {% endif %}
+                        </ul>
+                        <!-- Payment Method Info -->
+                        <div class="checkout__info">
+                            <p>Payment Method:</p>
+                            <div class="checkout_info_item">
+                                <input type="checkbox" id="cash_on_delivery" name="payment_method" value="cash_on_delivery">
+                                <label type="checkbox" name="payment_method" value="cash_on_delivery" checked>Cash on Delivery (Only)</label>
+                            </div>
+                        </div>
+                            <input type="hidden" name="bill" value="{{ adjusted_total|add:250 }}" id="">
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->
+
+
+{% endblock %}

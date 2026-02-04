@@ -1,0 +1,145 @@
+{% extends "dashboardheader.html" %}
+{% load static %}
+{% block start %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Our Categories</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/dashboard/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Add categories
+                           </button>
+       
+                              <!-- The Modal -->
+                             <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                   <div class="modal-content">
+       
+                             <!-- Modal Header -->
+                                 <div class="modal-header">
+                                        <h4 class="modal-title">Category Detail</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                 </div>
+       
+                             <!-- Modal body -->
+                                 <div class="modal-body">
+                                     <form action="{% url 'add_category' %}" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                         <label for="">Title</label>
+                                         <input type="text" name="title" class="form-control">
+                                         <label for="">Picture</label>
+                                         <input type="file" name="file" class="form-control">
+                                         <input type="submit" name="save" value="Add New" class="btn btn-primary mt-3">
+                                        
+                                     </form>
+                                 </div>
+                                     </div>
+                                 </div>
+                             </div>
+						</div>
+                </div>
+            </div>
+            
+            <!-- Alert Display Block -->
+						  {% if messages %}
+						  <div id="alert-container">
+							  {% for message in messages %}
+								  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+									  {{ message }}
+									  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								  </div>
+							  {% endfor %}
+						  </div>
+					  {% endif %}
+					  <!-- End Alert Display Block -->
+            <!-- Export Datatable start -->
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    <h4 class="text-blue h4">Our Categories</h4>
+                </div>
+                <div class="pb-20">
+                    <table class="table hover multiple-select-row data-table-export nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort">No.</th>
+                                <th>Title</th>
+                                <th>Picture</th>
+                                <th>Products</th>
+                                <th>update</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for items in categories %}
+                            <tr>
+                                <td class="table-plus">{{forloop.counter}}</td>
+                                <td class="table-plus">{{items.title}}</td>
+                                <td>
+                                    <img 
+                                       src="{% get_media_prefix %}{{ items.image }}" 
+                                       class="avatar-photo"
+                                       width="100px"
+                                       alt="">
+                                </td>
+                                <td>
+                                    <a href="/viewCatProducts/{{items.id }}" class="btn btn-success">View All</a>
+                                </td>
+                                <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Update{{forloop.counter}}">
+                                    Update
+                                   </button>
+               
+                                      <!-- The Modal -->
+                                     <div class="modal" id="Update{{forloop.counter}}">
+                                        <div class="modal-dialog">
+                                           <div class="modal-content">
+               
+                                     <!-- Modal Header -->
+                                         <div class="modal-header">
+                                                <h4 class="modal-title">Category Detail</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                         </div>
+               
+                                     <!-- Modal body -->
+                                         <div class="modal-body">
+                                             <form action="{% url 'update_category' %}" method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                 <label for="">Title</label>
+                                                 <input type="text" name="title" class="form-control" value="{{items.title}}">
+                                                 <input type="hidden" name="id" value="{{items.id}}" id="">
+                                                 <label for="">Choose new Picture</label>
+                                                 <input type="file" name="file" class="form-control">
+                                                 <input type="submit" name="save" value="save changes" class="btn btn-primary mt-3">
+                                                
+                                             </form>
+                                         </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                </td>
+                                <td>
+                                    <a href="/deletecategory/{{items.id}}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Export Datatable End -->
+        </div>
+    </div>
+</div>
+{% endblock %}

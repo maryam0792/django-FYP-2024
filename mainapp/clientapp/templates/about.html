@@ -1,0 +1,137 @@
+{% extends 'master.html' %}
+{% load static %}
+ {% block start %}
+   <!-- Breadcrumb Section Begin -->
+   <section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>About Us</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>About Us</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- About Section Begin -->
+<section class="about spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="about__pic">
+                    <img src="{% static 'img/about/about-us (5).png' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="about__item">
+                    <h4>Who We Are ?</h4>
+                    <p>We are a premier online retailer providing stylish and affordable eyewear with a cutting-edge virtual try-on feature. Our mission is to
+                     enhance your vision and shopping experience with quality glasses tailored to your unique style.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="about__item">
+                    <h4>Who We Do ?</h4>
+                    <p>We offer a wide range of stylish, affordable eyewear and an innovative virtual try-on feature. Our goal is to provide you with 
+                        the perfect glasses to match your unique style and vision needs.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="about__item">
+                    <h4>Why Choose Us</h4>
+                    <p>Choose us for our stylish, affordable eyewear and cutting-edge virtual try-on feature. Experience superior 
+                        quality and personalized service tailored to your unique vision needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Section End -->
+
+<!-- Testimonial Section Begin -->
+<section class="testimonial">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-3">
+                    About Us
+                </h1>
+            </div>
+            <div class="col-12 col-md-5">
+                <img src="{% static 'img/about/about-us (5).png' %}"  class="img-fluid img-thumbnail"  alt="">
+            </div>
+            <div class="col-12 col-md-7">
+                <p>
+                    Welcome to our premier online glasses store, where style meets innovation. We offer a wide 
+                    range of fashionable and affordable eyewear, ensuring you find the perfect pair to match your unique style! 
+                </p>
+                <p>
+                    Our cutting-edge virtual try-on feature allows you to see exactly how each pair will look on you, making 
+                    online shopping effortless and fun. Plus, our engaging gaming platform lets you earn discounts 
+                    while you play, adding an extra layer of excitement to your shopping experience!
+                </p>
+                <p>
+                    We are committed to providing superior quality and personalized service, enhancing your 
+                    vision and shopping journey. Discover a new way to shop for glasses with us today!!
+                </p>
+            </div>
+        </div>  
+    </div>      
+</section>
+<!-- Testimonial Section End -->
+
+<!-- Team Section Begin -->
+<section class="team spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Our Team</span>
+                    <h2>Meet Our Team</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/about/team-1.png' %}" alt="">
+                    <h4>Prof.Rizwan</h4>
+                    <span>PROJ Supervisor</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/about/team-4.png' %}" alt="">
+                    <h4>Maryam javeria</h4>
+                    <span>proj partner</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/about/team-3.png' %}" alt="">
+                    <h4>Summia Sharif</h4>
+                    <span>proj partner</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{% static 'img/about/team-2.png' %}" alt="">
+                    <h4>Waqar </h4>
+                    <span>proj partner</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->
+
+
+{% endblock %}

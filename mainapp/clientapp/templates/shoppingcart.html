@@ -1,0 +1,114 @@
+{% extends 'master.html' %} {% load static %} {% block start %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Shopping Cart</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Display Alert Messages -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="{% get_media_prefix %}{{item.product.image}}" alt="" width="100px">
+                                    </div>
+                                    <div class="product__cart__item__text">
+                                        <h6>{{item.product.title}}</h6>
+                                        <h5>{{item.product.price}}</h5>
+                                    </div>
+                                </td>
+                                <td class="quantity__item">
+                                    <form action="{% url 'update_cart_item' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="item_id" value="{{item.id}}">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                <input type="number" name="quantity" value="{{item.quantity}}" min="1">
+                                            </div>
+                                        </div>
+                                        <button type="submit">Update</button>
+                                    </form>
+                                </td>
+                                <td class="cart__price">
+                                    {{item.quantity}} X {{item.product.price}}
+                                </td>
+                                <td class="cart__close">
+                                <a href="/delete_cart_item/{{item.id}}">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a href="/shop/">Continue Shopping</a>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart__total">
+                    <h6>Cart total</h6>
+                    <ul>
+                        <li>Subtotal <span>RS- {{total}}</span></li>
+                        <li>Total <span>RS- {{total}}</span></li>
+                    </ul>
+                    {% if is_empty %}
+                    <button class="primary-btn" disabled >Proceed to checkout  </button>
+                {% else %}
+                    <a href="/checkout/{{ total }}" class="primary-btn">Proceed to checkout</a>
+                {% endif %}
+                    <br>
+                    <a href="/game/" class="primary-btn">play Game</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+
+<!--  proceed to checkout limit that when no item is in the cart then user cannot proceed next -->
+  
+
+{% endblock %}

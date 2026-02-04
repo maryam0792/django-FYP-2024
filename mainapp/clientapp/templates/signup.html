@@ -1,0 +1,41 @@
+{% extends 'master.html' %} {% load static %} {% block start %}
+<!-- Contact Section Begin -->
+<section class="contact spad mt-5">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mx-auto">
+                <div class="contact__text">
+                    <div class="section-title">
+                        <h2>Register Here</h2>
+                    </div>
+                </div>
+                <div class="contact__form">
+                    {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                    <form action="{% url 'add_new_user' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="fullname"  name="fullname" placeholder="fullname">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="password" name="password" placeholder="password">
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea placeholder="Address" name="address" rows="5"></textarea>
+                                <button type="submit" name="Login" class="site-btn">SignUp</button>
+                                <a href="/login">Already have an account</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section End -->
+{% endblock %}

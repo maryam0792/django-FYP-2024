@@ -1,0 +1,107 @@
+{% extends 'master.html' %} {% load static %} {% block start %}
+ <!-- Shop Details Section Begin -->
+  <p> summia sharif</p>
+ <section class="shop-details mt-5" >
+    <div class="product__details__pic">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product__details__breadcrumb">
+                        <a href="/">Home</a>
+                        <a href="/shop/">{{ product.category.title }}</a>
+                        <span>{{ product.title }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                <div class="product__thumb__pic set-bg" data-setbg="{% get_media_prefix %}{{product.image}}">
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__pic__item">
+                                <img src="{% get_media_prefix %}{{product.image}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product__details__content">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="product__details__text">
+                        <h4>{{product.title}}</h4>
+                        
+                        <h3>{{product.price}}.00</h3>
+                        <p>{{product.description}}</p>
+                        <form action="{% url 'add_to_cart' %}" method="POST" enctype="multipart/form-data">
+                           {% csrf_token %} 
+                        <div class="product__details__cart__option">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" value="1" name="quantity">
+                                </div>
+                            </div>
+                            <input type="hidden" name="product" value="{{ product.id }}" id="">
+                            <button type="submit" name="add" class="primary-btn">add to cart</button>
+                            <a
+                            href="/tryon/{{ product.id }}"
+                            class="primary-btn btn-primary"
+                          >
+                            Virtual TryOn
+                          </a>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- Shop Details Section End -->
+
+<!-- Related Section Begin -->
+<section class="related spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="related-title">Related Product</h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for items in Products %}
+            {% if items.id != product.id %}
+            <div class="col-lg-3 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="product__item">
+                    <div  class="product__item__pic">
+                        <span class="label">{{items.category.title}}</span>
+                        <ul>
+                            <li><a href="#"><img src="{% get_media_prefix %}{{items.image}}" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6>{{items.title}}</h6>
+                        <a href="/singleproducts/{{items.id}}" class="add-cart">VIEW ITEM DETAILS</a>
+                        <h5>{{items.price}}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Related Section End -->
+{% endblock %}

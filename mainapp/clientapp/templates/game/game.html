@@ -1,0 +1,37 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% csrf_token %}
+    <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
+    <link rel="icon" type="image/png" href="{% static 'game/images/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <title>Flappy Bird Game</title>
+    <link rel="stylesheet" href="{% static 'game/css/game.css' %}">
+
+    
+</head>
+<body>
+    <div class="background"></div>
+    <img src="{% static 'game/images/background-img.png' %}" alt="bird-img" class="bird" id="bird-1">
+    <div class="message">
+        Enter To Start Game <p><span style="color: red;">&uarr;</span> ArrowUp to Control</p>
+        <a href="{% url 'high_scores' %}" class="btn btn-success">View High Scores</a> <!-- Link to high scores page -->
+        <a href="/" class="btn btn-success">Go to Home page</a>
+        <a href="/shoppingcart/" class="btn btn-success">Go to Cart page</a>
+    </div>
+    <div class="score">
+        <span class="score_title"></span>
+        <span class="score_val"></span>
+    </div>
+    <script>
+        const userId = "{{ user.id }}";  // Assuming user is available in your template context
+    </script>
+    <script src="{% static 'game/js/game.js' %}" defer></script>
+</body>
+</html>
+

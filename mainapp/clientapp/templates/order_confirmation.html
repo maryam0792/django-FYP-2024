@@ -1,0 +1,116 @@
+{% extends 'master.html' %}{% load static %}
+{% block start %}
+
+<!-- Additional CSS for styling -->
+<style>
+    .order-confirmation {
+        padding: 50px 0;
+        background-color: #f8f9fa;
+    }
+
+    .order-confirmation__details {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .order-confirmation__details h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #28a745; /* Green for success */
+    }
+
+    .order-confirmation__details p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .order-confirmation__products {
+        margin-top: 20px;
+    }
+
+    .order-confirmation__products h5 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #007bff; /* Blue for product list */
+    }
+
+    .order-confirmation__products ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .order-confirmation__products li {
+        padding: 10px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .product-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .quantity, .product-title, .product-price {
+        flex: 1;
+        text-align: left;
+    }
+
+    .quantity {
+        color: #6c757d; /* Grey for quantity */
+    }
+
+    .product-title {
+        font-weight: bold;
+    }
+
+    .order-confirmation__summary {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .order-confirmation__summary ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .order-confirmation__summary li {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .order-confirmation__summary span {
+        font-weight: bold;
+    }
+</style>
+
+<!-- Order Confirmation Section Begin -->
+<section class="order-confirmation spad  mt-5">
+    
+    <div class="container">
+        <h3>maryam javeria</h3>
+        <div class="order-confirmation__details">
+            <h2>Thank you for your order!</h2>
+            <h2>{{ order.fullname }}</h2>
+            <p>Payment Method: {{ order.status }}</p>  <!-- If 'status' reflects the payment method -->
+            <p>Your order has been successfully placed. Below are the details of your order:</p>
+            <h4>Order Number: {{ order.id }}</h4>
+          
+            <div class="order-confirmation__summary">
+                <ul>
+                    <li>Subtotal <span>RS- {{ order.bill }}</span></li>
+                    
+                    <li>Total <span>Rs: {{ order.bill }}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Order Confirmation Section End -->
+{% endblock %}
