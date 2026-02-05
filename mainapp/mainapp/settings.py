@@ -5,8 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-z77isxpx@-%v=uxtv-9@g9l)p@km@162ga8--8&!rnq105snjt'
 
-DEBUG = True # Site chalne ke baad isay False kar dena
-
+DEBUG = True  # Site chalne ke baad False kar dena
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -22,7 +21,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Static files ke liye zaroori
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Yeh line zaroori hai
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,19 +58,21 @@ DATABASES = {
     }
 }
 
-# Static & Media Files
+# --- STATIC FILES FIX START ---
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Agar aapka folder 'static' hai toh ye line sahi hai
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# WhiteNoise Settings for MIME types and Compression
+# WhiteNoise production settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_MIMETYPES = {
     '.js': 'application/javascript',
     '.css': 'text/css',
 }
+# --- STATIC FILES FIX END ---
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
