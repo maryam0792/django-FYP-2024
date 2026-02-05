@@ -5,12 +5,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-z77isxpx@-%v=uxtv-9@g9l)p@km@162ga8--8&!rnq105snjt'
 
-# Production mein isay False hona chahiye, magar abhi True rehne dein taake error nazar aaye
-DEBUG = True
+DEBUG = True # Site chalne ke baad isay False kar dena
 
 ALLOWED_HOSTS = ['*']
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,7 +22,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # <--- Sahi position yahan hai
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Static files ke liye zaroori
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -61,21 +59,18 @@ DATABASES = {
     }
 }
 
-# Static files (CSS, JavaScript, Images)
+# Static & Media Files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# MIME Type fix for WhiteNoise
+# WhiteNoise Settings for MIME types and Compression
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_MIMETYPES = {
     '.js': 'application/javascript',
     '.css': 'text/css',
 }
 
-# Behtar storage engine jo error nahi dega
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
