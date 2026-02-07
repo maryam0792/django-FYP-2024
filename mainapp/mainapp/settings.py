@@ -136,3 +136,18 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
 # Stripe API Keys
+
+import os # Agar file ke shuru mein import os nahi hai toh ye bhi add karein
+
+STATIC_URL = 'static/'
+
+# Ye line add karein:
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Ensure WhiteNoise is in your MIDDLEWARE (if not already there)
+# It should be right after SecurityMiddleware
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Ye line lazmi honi chahiye
+    # ... other middlewares
+]
