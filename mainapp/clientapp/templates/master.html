@@ -12,7 +12,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Css Styles -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
@@ -24,217 +24,280 @@
     <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/hover.css' %}">
-    <link rel="stylesheet" href="{% static 'css/hero.css' %}"  type="text/css">
+    <link rel="stylesheet" href="{% static 'css/hero.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/indexcategories.css' %}" type="text/css">
     <!-- search items -->
     <link rel="stylesheet" href="{% static 'css/search.css' %}" type="text/css">
     <!-- profile -->
-     <link rel="stylesheet" href="{% static 'css/profile/edit_profile.css' %}" type="text/css">
-     <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/profile/edit_profile.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
 
     <style>
-        body, html {
-    margin: 0;
-    padding: 0;
-}
-
+/* Navigation Enhancement */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Modern blur effect */
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.header__menu ul li {
+    position: relative;
+    margin-right: 30px;
+}
+
+.header__menu ul li a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    text-transform: uppercase;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+/* Hover Animation */
+.header__menu ul li a::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #ff0000; /* Theme color */
+    display: block;
+    transition: 0.3s;
+}
+
+.header__menu ul li a:hover::after,
+.header__menu ul li.active a::after {
     width: 100%;
-    z-index: 1000;
-    background-color: #fff; /* Ensure the header has a background */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for visibility */
 }
 
-.content {
-    padding-top: 100px; /* Adjust this based on the header's height */
+/* Search Bar Styling */
+.search-input {
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 5px 15px;
+    transition: 0.3s;
+    width: 180px;
 }
 
-
-    </style>
-    <!-- How it works  -->
-     <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-        .how-it-works {
-    padding: 40px 0;
-    background-color: black;
-	opacity: 0.9;
-}
-.section-heading {
-    font-size: 2rem;
-    font-weight: bolder;
-    color: #fff; /* White color for heading text */
-    margin-bottom: 40px;
-    text-align: center;
-}
-.step {
-
-    padding: 15px; /* Reduced padding for less space */
-    background: #ffffff; /* Dark grey background for steps */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 0 auto; /* Center the step block */
-    max-width: 250px; 
+.search-input:focus {
+    width: 220px;
+    border-color: #ff0000;
+    box-shadow: none;
 }
 
-.step-number {
-    font-size: 3rem;
-    font-weight: bolder;
-    color:black;
-    margin-bottom: 10px;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin: 10px 0;
-    color: red;
-}
-
-p {
-    font-size: 1rem;
-    color: #000000;
-}
-
-/* Media Queries */
-@media (max-width: 767px) {
-    .step-number {
-        font-size: 1.5rem;
-    }
-
-    h3 {
-        font-size: 1.25rem;
-    }
-
-    p {
-        font-size: 0.875rem;
-    }
-}
-  
-     </style>
-     <!-- check our products -->
-      <style>
-        .product .container h2 {
-    text-align: center;
-    font-weight: bold;
-}
-
-      </style>
-      <!-- hide the search bar when the screen into mobile size -->
-      <style>
-        /* Hide the search bar and cart icon on desktop inside the offcanvas menu */
-     .header__nav__option {
+.header__nav__option {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-.header__nav__option .desktop-search-form,
-.header__nav__option .mobile-search-form {
-    margin-right: 20px;
-}
-
-.mobile-profile-icon, .desktop-profile-icon {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.mobile-profile-icon img, .desktop-profile-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Show the search bar and cart icon inside the mobile menu for smaller screens */
-@media (max-width: 767px) {
-    .desktop-only {
-        display: none;
-    }
-
-    .offcanvas__nav__option .mobile-search-form,
-    .offcanvas__nav__option .mobile-cart-icon {
-        display: block;
-    }
-}
-
-      </style>
-      <!-- user profile -->
-       <style>
-        /* profile.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-
-.profile-container {
-    max-width: 600px;
-    margin: 150px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.profile-icon {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid #ddd;
-    margin-bottom: 10px;
-}
-
-.profile-header h1 {
-    margin: 10px 0;
-    font-size: 24px;
-    color: #333;
-}
-
-.profile-header p {
-    color: #777;
-}
-
-.profile-details {
-    display: flex;
-    flex-direction: column;
     gap: 20px;
 }
 
-.profile-card {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
+/* Profile Icon Enhancement */
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border: 2px solid #eee;
+    transition: 0.3s;
 }
 
-.profile-card h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #555;
+.profile-icon:hover {
+    border-color: #ff0000;
 }
 
-.profile-card p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 8px;
+/* Responsive Fixes */
+@media (max-width: 991px) {
+    .header__menu {
+        display: none; /* Mobile menu handles this */
+    }
 }
+    </style>
+    <!-- How it works  -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-/* .edit-button {
+        .how-it-works {
+            padding: 40px 0;
+            background-color: black;
+            opacity: 0.9;
+        }
+
+        .section-heading {
+            font-size: 2rem;
+            font-weight: bolder;
+            color: #fff;
+            /* White color for heading text */
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .step {
+
+            padding: 15px;
+            /* Reduced padding for less space */
+            background: #ffffff;
+            /* Dark grey background for steps */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            /* Center the step block */
+            max-width: 250px;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: bolder;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: red;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #000000;
+        }
+
+        /* Media Queries */
+        @media (max-width: 767px) {
+            .step-number {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            p {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+    <!-- check our products -->
+    <style>
+        .product .container h2 {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+    <!-- hide the search bar when the screen into mobile size -->
+    <style>
+        /* Hide the search bar and cart icon on desktop inside the offcanvas menu */
+        .header__nav__option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header__nav__option .desktop-search-form,
+        .header__nav__option .mobile-search-form {
+            margin-right: 20px;
+        }
+
+        .mobile-profile-icon,
+        .desktop-profile-icon {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .mobile-profile-icon img,
+        .desktop-profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Show the search bar and cart icon inside the mobile menu for smaller screens */
+        @media (max-width: 767px) {
+            .desktop-only {
+                display: none;
+            }
+
+            .offcanvas__nav__option .mobile-search-form,
+            .offcanvas__nav__option .mobile-cart-icon {
+                display: block;
+            }
+        }
+    </style>
+    <!-- user profile -->
+    <style>
+        /* profile.css */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: 150px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .profile-header h1 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .profile-header p {
+            color: #777;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .profile-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .profile-card p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        /* .edit-button {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 15px;
@@ -247,143 +310,167 @@ body {
     transition: background-color 0.3s ease;
 } */
 
-/* Profile Button Styles */
+        /* Profile Button Styles */
 
-/* Button styles for both mobile and desktop */
-.edit-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #007bff; /* Primary color */
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
+        /* Button styles for both mobile and desktop */
+        .edit-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            /* Primary color */
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
 
-/* Hover effect */
-.edit-button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
-    transform: scale(1.05); /* Slightly enlarge the button */
-}
+        /* Hover effect */
+        .edit-button:hover {
+            background-color: #0056b3;
+            /* Darker shade for hover effect */
+            transform: scale(1.05);
+            /* Slightly enlarge the button */
+        }
 
-/* Focus effect */
-.edit-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5); /* Subtle shadow for focus */
-}
+        /* Focus effect */
+        .edit-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+            /* Subtle shadow for focus */
+        }
 
-/* Media query for mobile responsiveness */
-@media (max-width: 767px) {
-    .edit-button {
-        width: 100%;
-        padding: 12px;
-        font-size: 18px;
-    }
-}
-.coins-icon {
-    width: 20px; /* Adjust size as needed */
-    height: auto;
-    vertical-align: middle; /* Align with text */
-    margin-left: 5px; /* Space between image and text */
-}
-/* Styles for the message alert */
-.messages {
-    background-color: #f8d7da; /* Light red background */
-    color: #721c24; /* Dark red text */
-    border: 1px solid #f5c6cb; /* Light red border */
-    padding: 10px 15px;
-    margin: 20px 0;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px; /* Font size for messages */
-}
+        /* Media query for mobile responsiveness */
+        @media (max-width: 767px) {
+            .edit-button {
+                width: 100%;
+                padding: 12px;
+                font-size: 18px;
+            }
+        }
+
+        .coins-icon {
+            width: 20px;
+            /* Adjust size as needed */
+            height: auto;
+            vertical-align: middle;
+            /* Align with text */
+            margin-left: 5px;
+            /* Space between image and text */
+        }
+
+        /* Styles for the message alert */
+        .messages {
+            background-color: #f8d7da;
+            /* Light red background */
+            color: #721c24;
+            /* Dark red text */
+            border: 1px solid #f5c6cb;
+            /* Light red border */
+            padding: 10px 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            /* Font size for messages */
+        }
 
 
-/* Disabled button style */
-.primary-btn[disabled] {
-    background-color: #cccccc; /* Grey background */
-    color: #666666; /* Darker grey text */
-    cursor: not-allowed; /* Not-allowed cursor */
-    width: 280px;
-}
-.alert {
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 4px;
-    display: none; /* Hidden by default */
-  }
-  .success {
-    background-color: #4CAF50; /* Green for success */
-    color: white;
-  }
-  .error {
-    background-color: #f44336; /* Red for error */
-    color: white;
-  }
-  .coupon-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
+        /* Disabled button style */
+        .primary-btn[disabled] {
+            background-color: #cccccc;
+            /* Grey background */
+            color: #666666;
+            /* Darker grey text */
+            cursor: not-allowed;
+            /* Not-allowed cursor */
+            width: 280px;
+        }
 
-.icon_tag_alt {
-    font-size: 24px; /* Adjust the size if needed */
-    margin-right: 10px;
-}
+        .alert {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            display: none;
+            /* Hidden by default */
+        }
 
-.available-coins-text {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-}
+        .success {
+            background-color: #4CAF50;
+            /* Green for success */
+            color: white;
+        }
 
-.coins-icon {
-    width: 20px; /* Adjust the size of the coins image */
-    height: 20px;
-    margin-left: 5px;
-}
+        .error {
+            background-color: #f44336;
+            /* Red for error */
+            color: white;
+        }
 
-       </style>
-       <style>
+        .coupon-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .icon_tag_alt {
+            font-size: 24px;
+            /* Adjust the size if needed */
+            margin-right: 10px;
+        }
+
+        .available-coins-text {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .coins-icon {
+            width: 20px;
+            /* Adjust the size of the coins image */
+            height: 20px;
+            margin-left: 5px;
+        }
+    </style>
+    <style>
         .payment-methods {
-    text-align: center;
-    padding: 50px;
-}
+            text-align: center;
+            padding: 50px;
+        }
 
-.payment-methods h2 {
-    margin-bottom: 30px;
-}
+        .payment-methods h2 {
+            margin-bottom: 30px;
+        }
 
-.payment-option {
-    margin: 15px 0;
-}
+        .payment-option {
+            margin: 15px 0;
+        }
 
-.payment-btn {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+        .payment-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
 
-.payment-btn:hover {
-    background-color: #0056b3;
-}
-       </style>
-       
+        .payment-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
 </head>
 
 <body>
-      <!-- Page Preloder -->
-      <div id="preloder">
+    <!-- Page Preloder -->
+    <div id="preloder">
         <div class="loader"></div>
     </div>
 
@@ -393,9 +480,11 @@ body {
         <div class="offcanvas__option">
             <br><br><br>
             <div class="offcanvas__links">
-                <form method="GET" action="{% url 'search_items' %}" enctype="multipart/form-data" class="mobile-search-form">
+                <form method="GET" action="{% url 'search_items' %}" enctype="multipart/form-data"
+                    class="mobile-search-form">
                     <div class="form-group mb-0">
-                        <input type="text" class="form-control search-input" name="query" placeholder="Search Here" value="{{ query }}">
+                        <input type="text" class="form-control search-input" name="query" placeholder="Search Here"
+                            value="{{ query }}">
                         <button type="submit" class="search-button">
                             <i class="dw dw-search2"></i>
                         </button>
@@ -424,77 +513,81 @@ body {
                 <img src="{% static 'img/icon/user.png' %}" alt="Default Profile Icon" class="profile-icon">
             </a>
             {% endif %}
-            
+
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
             <p>Free shipping, 30-day return or refund guarantee.</p>
         </div>
     </div>
-<!-- Offcanvas Menu End -->
+    <!-- Offcanvas Menu End -->
 
-<!-- Header Section Begin -->
-<header class="header">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-7">
-                    <div class="header__top__left">
-                        <p>
-                            <i class="fa fa-phone"></i> 042-111-00-00-78 | 
-                            <i class="fa fa-envelope"></i> info@superiorcolleges.edu.pk
-                        </p>
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>
+                                <i class="fa fa-phone"></i> 042-111-00-00-78 |
+                                <i class="fa fa-envelope"></i> info@superiorcolleges.edu.pk
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-3">
-                <div class="header__logo">
-                    <a href="/"><img src="{% static 'img/logo2.png' %}" alt=""></a>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-3">
+                    <div class="header__logo">
+                        <a href="/"><img src="{% static 'img/logo2.png' %}" alt=""></a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <nav class="header__menu mobile-menu">
-                    <ul>
-                        <li class="{% if request.path == '/' %}active{% endif %}"><a href="/">Home</a></li>
-                        <li class="{% if request.path == '/shop/' %}active{% endif %}"><a href="/shop/">Shop</a></li>
-                         <!-- game  section start-->
-                         <li><a href="/game/">play game </a></li>
-                         <!-- game section end -->
-                        <li class="{% if request.path == '/about/' or request.path == '/shoppingcart/' or request.path == '/contact/' %}active{% endif %}"><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="/about/">About Us</a></li>
-                                <li><a href="/shoppingcart/">Shopping Cart</a></li>
-                                <li><a href="/contact/">Contact</a></li>
-                            </ul>
-                        </li>
-                        {% if request.session.id %}
-                        <li><a href="/logout">Logout</a></li>
-                        {% else %}
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/signup">Signup</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-4 col-md-3">
-                <div class="header__nav__option desktop-only">
-                    <!-- Desktop search bar and cart icon -->
-                    <form method="GET" action="{% url 'search_items' %}" enctype="multipart/form-data">
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control search-input" name="query" placeholder="Search Here" value="{{ query }}">
-                            <button type="submit" class="search-button">
-                                <i class="dw dw-search2"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <div><a href="/shoppingcart/" id="cart-icon">
-                        <img src="{% static 'img/icon/cart.png' %}" alt="">
-                    </a></div>
-                    <!-- <div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="{% if request.path == '/' %}active{% endif %}"><a href="/">Home</a></li>
+                            <li class="{% if request.path == '/shop/' %}active{% endif %}"><a href="/shop/">Shop</a>
+                            </li>
+                            <!-- game  section start-->
+                            <li><a href="/game/">play game </a></li>
+                            <!-- game section end -->
+                            <li
+                                class="{% if request.path == '/about/' or request.path == '/shoppingcart/' or request.path == '/contact/' %}active{% endif %}">
+                                <a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="/about/">About Us</a></li>
+                                    <li><a href="/shoppingcart/">Shopping Cart</a></li>
+                                    <li><a href="/contact/">Contact</a></li>
+                                </ul>
+                            </li>
+                            {% if request.session.id %}
+                            <li><a href="/logout">Logout</a></li>
+                            {% else %}
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/signup">Signup</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-4 col-md-3">
+                    <div class="header__nav__option desktop-only">
+                        <!-- Desktop search bar and cart icon -->
+                        <form method="GET" action="{% url 'search_items' %}" enctype="multipart/form-data">
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control search-input" name="query"
+                                    placeholder="Search Here" value="{{ query }}">
+                                <button type="submit" class="search-button">
+                                    <i class="dw dw-search2"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <div><a href="/shoppingcart/" id="cart-icon">
+                                <img src="{% static 'img/icon/cart.png' %}" alt="">
+                            </a></div>
+                        <!-- <div>
                         <a href="{% if request.session.id %}{% url 'user_profile' %}{% else %}{% url 'login' %}{% endif %}" class="desktop-profile-icon">
                            
                {% if user.image %}
@@ -504,32 +597,32 @@ body {
            {% endif %}
                        </a></div> -->
 
-                       {% if request.session.id %}
-                    <a href="{% if request.session.type == 'admin' %}
+                        {% if request.session.id %}
+                        <a href="{% if request.session.type == 'admin' %}
                     {% url 'dashboardprofile' %}
                     {% else %}
                     {% url 'user_profile' %}
                     {% endif %}">
-                        {% if user.image %}
-                        <img src="{{ user.image.url }}" alt="Profile Image" class="profile-icon">
+                            {% if user.image %}
+                            <img src="{{ user.image.url }}" alt="Profile Image" class="profile-icon">
+                            {% else %}
+                            <img src="{% static 'img/icon/user.png' %}" alt="Default Profile Icon" class="profile-icon">
+                            {% endif %}
+                        </a>
                         {% else %}
-                        <img src="{% static 'img/icon/user.png' %}" alt="Default Profile Icon" class="profile-icon">
+                        <a href="{% url 'login' %}">
+                            <img src="{% static 'img/icon/user.png' %}" alt="Default Profile Icon" class="profile-icon">
+                        </a>
                         {% endif %}
-                    </a>
-                    {% else %}
-                    <a href="{% url 'login' %}">
-                        <img src="{% static 'img/icon/user.png' %}" alt="Default Profile Icon" class="profile-icon">
-                    </a>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
-        <div class="canvas__open"><i class="fa fa-bars"></i></div>
-    </div>
-</header>
-<!-- Header Section Begin  -->
-   {% block start %}{% endblock %}
-    
+    </header>
+    <!-- Header Section Begin  -->
+    {% block start %}{% endblock %}
+
     <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">
@@ -548,7 +641,7 @@ body {
                         <h6>Shopping</h6>
                         <ul>
                             <li><a href="/shop/">Glasses store</a></li>
-                          
+
                         </ul>
                     </div>
                 </div>
@@ -557,7 +650,7 @@ body {
                         <h6>Shopping</h6>
                         <ul>
                             <li><a href="/contact/">Contact Us</a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -582,7 +675,7 @@ body {
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>2020
-                            All rights reserved 
+                            All rights reserved
                         </p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
@@ -593,7 +686,7 @@ body {
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-     
+
     <script src="{% static 'js/jquery-3.3.1.min.js ' %}"></script>
     <script src="{% static 'js/bootstrap.min.js ' %}"></script>
     <script src="{% static 'js/jquery.nice-select.min.js ' %}"></script>
@@ -606,6 +699,7 @@ body {
     <script src="{% static 'js/main.js ' %}"></script>
     <!-- JavaScript to populate modal with user input -->
     <script src="https://js.stripe.com/v3/"></script>
- 
+
 </body>
+
 </html>
